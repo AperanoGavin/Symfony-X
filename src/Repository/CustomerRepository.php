@@ -20,6 +20,30 @@ class CustomerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Customer::class);
     }
+    /* 
+     * @insert into customer (firstname, lastname, email, password) value from the register form
+     * 
+     */
+
+     public function findCustomerById(int $id): ?Customer
+     {
+         return $this->createQueryBuilder('c')
+             ->andWhere('c.id = :id')
+             ->setParameter('id', $id)
+             ->getQuery()
+             ->getOneOrNullResult()
+         ;
+     }
+
+     public function findCustomerByEmail(string $email): ?Customer
+     {
+        return $this->createQueryBuilder('c')
+        ->andWhere('')
+        ->setParameter('email', $email)
+        ->getQuery()
+        ->getResult();
+       // ->getOneOrNullResult() ;
+     }
 
 //    /**
 //     * @return Customer[] Returns an array of Customer objects

@@ -9,13 +9,15 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['customer:item', 'customer:list']],
     denormalizationContext: ['groups' => ['customer:item', 'customer:write']]
 )]
-class Customer
+class Customer 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
